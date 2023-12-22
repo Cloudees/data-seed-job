@@ -30,7 +30,7 @@ pipeline {
             }
         }
 
-        stage("Build Docker Image") {
+        /*stage("Build Docker Image") {
             steps {
                 script {
                     gv.buildDockerImage()
@@ -68,6 +68,6 @@ pipeline {
                     subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'charradoumayma1@gmail.com',
                     attachmentsPattern: "TrivyReport.html"
         }
-    }
+    }*/
 
 }
