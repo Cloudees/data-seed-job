@@ -1,6 +1,23 @@
+def incrementDataSeedJobVersion(){
+    echo "Incrementing the Application Version"
+    def currentVersion = sh(script: "grep 'const version' main.go | awk '{print \$NF}' | tr -d '\"'", returnStdout: true).trim()
+    // Incrementing the Version
+    def newVersion = incrementVersion(currentVersion)
+    // Updating the Version in the Source Code
+    sh "sed -i 's/const version = \"$currentVersion\"/const version = \"$newVersion\"/' main.go"
+    // Setting the New Version as an Environment Variable for Later Use
+    env.IMAGE_VERSION = newVersion
+}
+
+def incrementVersion(currentVersion) {
+    def versionParts = currentVersion.split("\\.")
+    def newPatchVersion = versionParts[2].toInteger() + 1
+    return "${versionParts[0]}.${versionParts[1]}.$newPatchVersion"
+}
+
 def buildGoBinaries() {
-    echo "Compiling and Building the application..."
-    sh "go build"
+    echo "Compiling and Building the Application..."
+    sh "go build -o data-seed-job-${IMAGE_VERSION}"
 }
 
 def buildDockerImage() {

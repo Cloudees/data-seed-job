@@ -18,6 +18,14 @@ pipeline {
             }
         }
 
+        stage("Increment Version") {
+            steps {
+                script {
+                    gv.incrementDataSeedJobVersion()
+                }
+            }
+        }
+
         stage("Build Go Binaries") {
             steps {
                 script {
