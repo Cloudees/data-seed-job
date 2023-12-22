@@ -6,6 +6,7 @@ def incrementDataSeedJobVersion(){
     // Updating the Version in the Source Code
     sh "sed -i 's/const version = \"$currentVersion\"/const version = \"$newVersion\"/' main.go"
     // Commit the Changes
+    sh "git remote add origin git@github.com:ayadi-mohamed/data-seed-job.git"
     sh "git checkout main"
     sh "git commit -am 'Increment Version to $newVersion'"
     // Setting the New Version as an Environment Variable for Later Use
@@ -48,7 +49,7 @@ def pushToDeploymentGitHub() {
 def gitpush(){
     // Push the Changes to GitHub
     sshagent (credentials: ["Private-Key"]) {
-        sh "git push oumayma main"
+        sh "git push origin main"
     }
 }
 return this
