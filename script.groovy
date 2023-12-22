@@ -48,7 +48,7 @@ def pushToDeploymentGitHub() {
 def gitpush(){
     // Push the Changes to GitHub
     sshagent (credentials: ["Private-Key"]) {
-        sh "git push origin main"
+        sh "git push oumayma main"
     }
 }
 return this
