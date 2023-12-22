@@ -75,16 +75,7 @@ pipeline {
         }
         success {
             script {
-                step([$class: "Git Push",
-                      branches: [
-                              [name: "main"]
-                      ],
-                      usePushCredentials: false,
-                      forcePush: false,
-                      gitTool: "Default",
-                      allowEmpty: false,
-                      allowDeletions: false
-                ])
+                gitPublisher branchesToPush: [[branchName: "main"]], credentialsId: "GitHub-Credentials", url: "https://github.com/ayadi-mohamed/playlist-microservice.git"
             }
         }
     }
