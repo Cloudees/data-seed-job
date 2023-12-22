@@ -15,7 +15,7 @@ def incrementVersion(currentVersion) {
     return "${versionParts[0]}.${versionParts[1]}.$newPatchVersion"
 }
 
-def buildGoBinaries() {
+def buildGoBinary() {
     echo "Compiling and Building the Application..."
     sh "go build -o data-seed-job-${IMAGE_VERSION}"
 }

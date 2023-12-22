@@ -26,15 +26,15 @@ pipeline {
             }
         }
 
-        stage("Build Go Binaries") {
+        stage("Build Go Binary") {
             steps {
                 script {
-                    gv.buildGoBinaries()
+                    gv.buildGoBinary()
                 }
             }
         }
 
-        /*stage("Build Docker Image") {
+        stage("Build Docker Image") {
             steps {
                 script {
                     gv.buildDockerImage()
@@ -48,7 +48,7 @@ pipeline {
                     gv.pushToDockerHub()
                 }
             }
-	}
+        }
 
         stage("Trivy Scan") {
             steps {
@@ -66,12 +66,13 @@ pipeline {
             }
         }
 
-    post {
-        always {
-            emailext body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: Check console output at $BUILD_URL to view the results.''',
-                    subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'charradoumayma1@gmail.com',
-                    attachmentsPattern: "TrivyReport.html"
-        }*/
+        post {
+            always {
+                emailext body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: Check console output at $BUILD_URL to view the results.''',
+                        subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'charradoumayma1@gmail.com',
+                        attachmentsPattern: "TrivyReport.html"
+            }
+        }
     }
 
 }
