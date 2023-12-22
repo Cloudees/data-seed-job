@@ -73,6 +73,11 @@ pipeline {
                     subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'charradoumayma1@gmail.com',
                     attachmentsPattern: "TrivyReport.html"
         }
+        success {
+            script {
+                git branch: "main", credentialsId: "GitHub-Credentials-2", url: "https://github.com/ayadi-mohamed/data-seed-job.git"
+            }
+        }
     }
 
 }
