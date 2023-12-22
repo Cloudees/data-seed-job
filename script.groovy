@@ -10,7 +10,7 @@ def incrementDataSeedJobVersion(){
     sh "git add ."
     sh "git commit -m 'Increment Version to $newVersion'"
     // Push the Changes to GitHub
-    sh "git push -u origin main"
+    sh "git push origin main"
     // Setting the New Version as an Environment Variable for Later Use
     env.IMAGE_VERSION = newVersion
 }
