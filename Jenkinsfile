@@ -4,7 +4,11 @@ def gv
 
 pipeline {
     agent any
-    
+
+    tools {
+        go "Go-1.19"
+    }
+
     stages {
         stage("Initialize") {
             steps {
