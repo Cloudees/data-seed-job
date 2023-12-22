@@ -74,7 +74,7 @@ pipeline {
                     attachmentsPattern: "TrivyReport.html"
         }
         success {
-            gitPush(targetRemoteBranch: "main", targetRemoteRepo: "origin")
+            gitPush(remoteBranch: "main", remoteRepo: "origin")
         }
     }
 
