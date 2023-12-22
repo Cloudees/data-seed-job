@@ -1,7 +1,5 @@
 def incrementDataSeedJobVersion(){
     echo "Incrementing the Application Version"
-    sh "git clone git@github.com:ayadi-mohamed/data-seed-job.git"
-    sh "cd data-seed-job"
     def currentVersion = sh(script: "grep 'const version' main.go | awk '{print \$NF}' | tr -d '\"'", returnStdout: true).trim()
     // Incrementing the Version
     def newVersion = incrementVersion(currentVersion)
@@ -10,7 +8,9 @@ def incrementDataSeedJobVersion(){
     // Commit the Changes
     sh "git commit -am 'Increment Version to $newVersion'"
     // Push the Changes to GitHub
-    sh "git push origin main"
+    withCredentials([usernamePassword(credentialsId: "GitHub-Credentials", passwordVariable: "GIT_PASSWORD", usernameVariable: "GIT_USERNAME")]) {
+        sh("git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/ayadi-mohamed/data-seed-job.git")
+    }
     // Setting the New Version as an Environment Variable for Later Use
     env.IMAGE_VERSION = newVersion
 }
