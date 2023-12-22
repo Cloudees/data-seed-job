@@ -6,9 +6,7 @@ def incrementDataSeedJobVersion(){
     // Updating the Version in the Source Code
     sh "sed -i 's/const version = \"$currentVersion\"/const version = \"$newVersion\"/' main.go"
     // Commit the Changes
-    sh "git checkout -b main"
-    sh "git add ."
-    sh "git commit -m 'Increment Version to $newVersion'"
+    sh "git commit -am 'Increment Version to $newVersion'"
     // Push the Changes to GitHub
     sh "git push origin main"
     // Setting the New Version as an Environment Variable for Later Use
