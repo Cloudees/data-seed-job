@@ -8,10 +8,6 @@ def incrementDataSeedJobVersion(){
     // Commit the Changes
     sh "git checkout main"
     sh "git commit -am 'Increment Version to $newVersion'"
-    // Push the Changes to GitHub
-    sshagent (credentials: ["Private-Key"]) {
-        sh "git push origin master"
-    }
     // Setting the New Version as an Environment Variable for Later Use
     env.IMAGE_VERSION = newVersion
 }
@@ -49,4 +45,10 @@ def pushToDeploymentGitHub() {
     echo "Pushing to Deployment GitHub..."
 }
 
+def gitpush(){
+    // Push the Changes to GitHub
+    sshagent (credentials: ["Private-Key"]) {
+        sh "git push origin main"
+    }
+}
 return this
