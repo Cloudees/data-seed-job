@@ -74,7 +74,7 @@ pipeline {
                     attachmentsPattern: "TrivyReport.html"
         }
         success {
-            gitPush(branchesToPush: [[branchName: "main"]], credentialsId: "GitHub-Credentials", url: "https://github.com/ayadi-mohamed/playlist-microservice.git")
+            gitPush(targetRemoteBranch: "main", targetRemoteRepo: "origin")
         }
     }
 
