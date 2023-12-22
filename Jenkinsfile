@@ -75,7 +75,7 @@ pipeline {
         }
         success {
             script {
-                step([$class: 'GitPublisher',
+                step([$class: "Git Push",
                       branches: [
                               [name: "main"]
                       ],
