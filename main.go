@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	"github.com/go-redis/redis/v8"
-	playlist "github.com/kubees/data-seed-job/playlist-seed"
-	videos "github.com/kubees/data-seed-job/videos-seed"
+	playlist "github.com/ayadi-mohamed/data-seed-job/playlist-seed"
+	videos "github.com/ayadi-mohamed/data-seed-job/videos-seed"
 	"go.uber.org/zap"
 	"os"
 )
