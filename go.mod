@@ -1,4 +1,4 @@
-module github.com/kubees/data-seed-job
+module github.com/ayadi-mohamed/data-seed-job
 
 go 1.19
 
