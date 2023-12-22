@@ -9,7 +9,7 @@ def incrementDataSeedJobVersion(){
     sh "git checkout main"
     sh "git commit -am 'Increment Version to $newVersion'"
     // Push the Changes to GitHub
-    sshagent (credentials: ["GitHub-Private-Key"]) {
+    sshagent (credentials: ["Private-Key"]) {
         sh "git push origin master"
     }
     // Setting the New Version as an Environment Variable for Later Use
