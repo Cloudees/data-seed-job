@@ -75,7 +75,7 @@ pipeline {
         }
         success {
             script {
-                git branch: "main", credentialsId: "GitHub-Credentials-2", url: "https://github.com/ayadi-mohamed/data-seed-job.git"
+                git branch: "main", credentialsId: "GitHub-Credentials", url: "https://github.com/ayadi-mohamed/data-seed-job.git"
             }
         }
     }
