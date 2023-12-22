@@ -74,9 +74,7 @@ pipeline {
                     attachmentsPattern: "TrivyReport.html"
         }
         success {
-            script {
-                gitPublisher branchesToPush: [[branchName: "main"]], credentialsId: "GitHub-Credentials", url: "https://github.com/ayadi-mohamed/playlist-microservice.git"
-            }
+            gitPublisher branchesToPush: [[branchName: "main"]], credentialsId: "GitHub-Credentials", url: "https://github.com/ayadi-mohamed/playlist-microservice.git"
         }
     }
 
