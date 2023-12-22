@@ -73,9 +73,6 @@ pipeline {
                     subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'charradoumayma1@gmail.com',
                     attachmentsPattern: "TrivyReport.html"
         }
-        success {
-            gitPush("main")
-        }
     }
 
 }
