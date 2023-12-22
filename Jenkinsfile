@@ -75,7 +75,16 @@ pipeline {
         }
         success {
             script {
-                git branch: "main", credentialsId: "GitHub-Credentials", url: "https://github.com/ayadi-mohamed/data-seed-job.git"
+                step([$class: 'GitPublisher',
+                      branches: [
+                              [name: "main"]
+                      ],
+                      usePushCredentials: false,
+                      forcePush: false,
+                      gitTool: "Default",
+                      allowEmpty: false,
+                      allowDeletions: false
+                ])
             }
         }
     }
