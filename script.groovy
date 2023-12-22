@@ -10,7 +10,6 @@ def incrementDataSeedJobVersion(){
     sh "git commit -am 'Increment Version to $newVersion'"
     // Push the Changes to GitHub
     withCredentials([usernamePassword(credentialsId: "GitHub-Credentials", passwordVariable: "GIT_PASSWORD", usernameVariable: "GIT_USERNAME")]) {
-        sh "echo $GIT_PASSWORD | git login -u $GIT_USERNAME --password-stdin"
         sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/ayadi-mohamed/data-seed-job.git"
     }
     // Setting the New Version as an Environment Variable for Later Use
