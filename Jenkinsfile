@@ -4,15 +4,7 @@ def gv
 
 pipeline {
     agent any
-
-    environment {
-
-    }
-
-    tools {
-
-    }
-
+    
     stages {
         stage("Initialize") {
             steps {
