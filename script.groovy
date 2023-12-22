@@ -1,5 +1,7 @@
 def incrementDataSeedJobVersion(){
     echo "Incrementing the Application Version"
+    sh "git clone git@github.com:ayadi-mohamed/data-seed-job.git"
+    sh "cd data-seed-job"
     def currentVersion = sh(script: "grep 'const version' main.go | awk '{print \$NF}' | tr -d '\"'", returnStdout: true).trim()
     // Incrementing the Version
     def newVersion = incrementVersion(currentVersion)
