@@ -49,9 +49,7 @@ def pushToDeploymentGitHub() {
     sh "sed -i \"s|- image: oumaymacharrad/data-seed-job:\${CURRENT_VERSION}|- image: oumaymacharrad/data-seed-job:\${IMAGE_VERSION}|\" deployment/microservices/playlist/deployment-playlist.yaml"
     sh "CURRENT_VERSION=\$(grep 'image: oumaymacharrad/data-seed-job' deployment/microservices/videos/deployment-videos.yaml | awk -F: '{print \$3}' | cut -d'@' -f1)"
     sh "sed -i \"s|- image: oumaymacharrad/data-seed-job:\${CURRENT_VERSION}|- image: oumaymacharrad/data-seed-job:\${IMAGE_VERSION}|\" deployment/microservices/videos/deployment-videos.yaml"
-    sh "cd deployment" 
-    sh "git commit -am 'Increment Version to ${IMAGE_VERSION}'"
-    sh "git push origin main"
+    sh "cd deployment | git commit -am 'Increment Version to ${IMAGE_VERSION}' | git push origin main" 
 }
 
 def gitpush(){
