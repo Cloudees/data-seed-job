@@ -48,8 +48,8 @@ def pushToDeploymentGitHub() {
     def currentVersion = sh(script: "grep 'image: oumaymacharrad/data-seed-job' deployment/microservices/playlist/deployment-playlist.yaml | awk -F: '{print \$3}' | cut -d'@' -f1", returnStdout: true)
     env.CURRENT_VERSION = currentVersion
     // sh "sed -i \'s| image: oumaymacharrad/data-seed-job:${CURRENT_VERSION}| image: oumaymacharrad/data-seed-job:${IMAGE_VERSION}|\' deployment/microservices/playlist/deployment-playlist.yaml"
-    sh "sed -i 's/image: oumaymacharrad\/data-seed-job:$CURRENT_VERSION/image: oumaymacharrad\/data-seed-job:$IMAGE_VERSION/' deployment/microservices/playlist/deployment-playlist.yaml"
-    sh "sed -i 's/image: oumaymacharrad\/data-seed-job:$CURRENT_VERSION/image: oumaymacharrad\/data-seed-job:$IMAGE_VERSION/' deployment/microservices/videos/deployment-videos.yaml"
+    sh "sed -i "s/image: oumaymacharrad\/data-seed-job:$CURRENT_VERSION/image: oumaymacharrad\/data-seed-job:$IMAGE_VERSION/" deployment/microservices/playlist/deployment-playlist.yaml"
+    sh "sed -i "s/image: oumaymacharrad\/data-seed-job:$CURRENT_VERSION/image: oumaymacharrad\/data-seed-job:$IMAGE_VERSION/" deployment/microservices/videos/deployment-videos.yaml"
     sh """
     cd deployment
     git commit -am 'Increment Version to ${IMAGE_VERSION}'
