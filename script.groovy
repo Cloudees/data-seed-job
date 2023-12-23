@@ -59,7 +59,7 @@ def pushToDeploymentGitHub() {
         git push origin main
         """
     }
-    sh "rmdir deployment"
+    sh "rm -rf deployment"
 }
 
 def gitpush(){
