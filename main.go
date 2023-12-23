@@ -9,7 +9,7 @@ import (
 	"os"
 )
 
-const version = "1.0.7"
+const version = "1.0.8"
 var microservice = os.Getenv("MICROSERVICE")
 var redisHost = os.Getenv("REDIS_HOST")
 var redisPort = os.Getenv("REDIS_PORT")
