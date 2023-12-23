@@ -45,9 +45,10 @@ def trivyScan(){
 def pushToDeploymentGitHub() {
     echo "Pushing to Deployment GitHub..."
     sh "git clone git@github.com:Cloudees/deployment.git"
-    sh "env.CURRENT_VERSION=\$(grep 'image: oumaymacharrad/data-seed-job' deployment/microservices/playlist/deployment-playlist.yaml | awk -F: '{print \$3}' | cut -d'@' -f1)"
+    sh "currentVersion=\$(grep 'image: oumaymacharrad/data-seed-job' deployment/microservices/playlist/deployment-playlist.yaml | awk -F: '{print \$3}' | cut -d'@' -f1)"
+    env.CURRENT_VERSION = currentVersion
     sh "sed -i \"s| image: oumaymacharrad/data-seed-job:\${CURRENT_VERSION}| image: oumaymacharrad/data-seed-job:\${IMAGE_VERSION}|\" deployment/microservices/playlist/deployment-playlist.yaml"
-    sh "CURRENT_VERSION=\$(grep 'image: oumaymacharrad/data-seed-job' deployment/microservices/videos/deployment-videos.yaml | awk -F: '{print \$3}' | cut -d'@' -f1)"
+    // sh "currentVersion=\$(grep 'image: oumaymacharrad/data-seed-job' deployment/microservices/videos/deployment-videos.yaml | awk -F: '{print \$3}' | cut -d'@' -f1)"
     sh "sed -i \"s| image: oumaymacharrad/data-seed-job:\${CURRENT_VERSION}| image: oumaymacharrad/data-seed-job:\${IMAGE_VERSION}|\" deployment/microservices/videos/deployment-videos.yaml"
     sh """
     cd deployment
