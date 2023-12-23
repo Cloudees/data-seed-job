@@ -48,10 +48,10 @@ def pushToDeploymentGitHub() {
     sh "cd data-seed-job-deployment" 
     sh "git clone https://github.com/Cloudees/deployment.git"
     sh "cd microservices/playlist"
-    sh "CURRENT_VERSION=$(grep 'image: oumaymacharrad/data-seed-job' deployment-playlist.yaml | awk -F':' '{print $3}' | cut -d'@' -f1)"
+    sh 'CURRENT_VERSION=$(grep "image: oumaymacharrad/data-seed-job" deployment-playlist.yaml | awk -F: \'{print \$3}\' | cut -d\'@\' -f1)'
     sh "sed -i \"s|- image: oumaymacharrad/data-seed-job:\${CURRENT_VERSION}|- image: oumaymacharrad/data-seed-job:\${IMAGE_VERSION}|\" deployment-playlist.yaml"
     sh "cd ../videos"
-    sh "CURRENT_VERSION=$(grep 'image: oumaymacharrad/data-seed-job' deployment-videos.yaml | awk -F':' '{print $3}' | cut -d'@' -f1)"
+    sh "CURRENT_VERSION=$(grep 'image: oumaymacharrad/data-seed-job' deployment-videos.yaml | awk -F':' '{print \$3}' | cut -d'@' -f1)"
     sh "sed -i \"s|- image: oumaymacharrad/data-seed-job:\${CURRENT_VERSION}|- image: oumaymacharrad/data-seed-job:\${IMAGE_VERSION}|\" deployment-videos.yaml"
     sh "cd ../.."
     sh "git commit -am 'Increment Version to $newVersion'"
